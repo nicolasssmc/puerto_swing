@@ -33,6 +33,7 @@ public class UI_Hub {
     private JButton cuantosButton;
     private JTextField idContenedorTextField;
     private JComboBox comboBox2;
+    private JButton pesototal;
 
     private Hub hub = new Hub();
 
@@ -167,6 +168,12 @@ public class UI_Hub {
                     }
                     JOptionPane.showMessageDialog(HUB, sb.toString());
                 }
+            }
+        });
+        pesototal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Peso: " + hub.peso());
             }
         });
     }

@@ -27,7 +27,7 @@ public class Hub {
                     cadena+="[N]";
                 }
                 else{
-                    cadena+="["+conten[i][j].getId()+"]";
+                    cadena+="["+conten[i][j].getId()+"-"+conten[i][j].getPeso()+"]";
                 }
             }
             cadena+="\n";
@@ -39,14 +39,17 @@ public class Hub {
     public void apilar(Contenedor c){
         if(c!=null){
             int p = c.getPrioridad();
+            int control=0;
 
             if(p==1 || p==2){ //Prioridad 1 y 2
                 int col = p-1;
-                for (int i = conten.length-1; i >= 0; i--) {
-                    if(conten[i][col]==null){
+                for (int i = 0; i<10; i++) {
+                    if(conten[i][col]==null && control==0){
                         conten[i][col]=c;
+                        control++;
                     }
                 }
+                control=0;
             }
             else{ //Prioridad 3
                 for (int i = conten.length-1; i < p-1; i++) {
@@ -73,5 +76,17 @@ public class Hub {
             }
         }
         return null;
+    }
+
+    public float peso(){
+        float p=0;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 12; j++) {
+                if(conten[i][j]!=null) {
+                    p += conten[i][j].getPeso();
+                }
+            }
+        }
+        return p;
     }
 }
